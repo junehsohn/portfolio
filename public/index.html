@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/backbone/backbone.js"></script>
+    <script src="lib/mustache/mustache.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Backbone router sample</title>
+    <script id="index_view_template" type="template">
+      <div class="jumbotron">
+        <div class="container">
+          <h2>トップページ</h2>
+          <ul class="list-group">
+            <li class="list-group-item"><a href="other" class="link">other</a></li>
+            <li class="list-group-item"><a href="other/1" class="link">other(1)</a></li>
+            <li class="list-group-item"><a href="other/2" class="link">other(2)</a></li>
+          </ul>
+        </div>
+      </div>
+    </script>
+    <script id="other_view_template" type="template">
+      <div class="jumbotron">
+        <div class="container">
+          <p>指定された値 {{val}}</p>
+        </div>
+      </div>
+    </script>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header"><a href="" class="link navbar-brand">Backbone router sample</a></div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="other" class="link">other</a></li>
+            <li><a href="other/1" class="link">other(1)</a></li>
+            <li><a href="other/2" class="link">other(2)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="test">
+      <marquee>あなたの予想に反して、この文字はスクロールし続けていますか？</marquee>
+    </div>
+    <div id="app_view"></div>
+  </body>
+</html>

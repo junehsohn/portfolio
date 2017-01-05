@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko" data-framework="backbonejs">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	    <meta http-equiv="cache-control" content="no-cache" />
+	    <meta http-equiv="pragma" content="no-cache" />
+	    <meta name="author" content="J.H.Sohn" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no" />
+    	<!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />-->
+    	<meta name="apple-mobile-web-app-capable" content="yes" />
+    	<!--<base href="http://optimisticrange.net">-->
+		<title>optimistic range</title>
+		<meta name="description" content="optimistic range is a portfolio of J.H.sohn in Seoul that creates Front-end development" />
+    	<meta name="keywords" content="" />
+    	<link rel="image_src" href="" />
+	    <meta property="og:title" content="Portfolio | Optimistic Range" />
+	    <meta property="og:type" content="website" />
+	    <meta property="og:url" content="" />
+	    <meta property="og:image" content="" />
+	    <meta property="og:description" content="optimistic range is a portfolio of J.H.sohn in Seoul that creates Front-end development" />
+	    <link rel="icon" type="image/gif" href="" />
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	    <link rel="apple-touch-icon" href="" sizes="57x57" />
+	    <link rel="apple-touch-icon" href="" sizes="72x72" />
+	    <link rel="apple-touch-icon" href="" sizes="76x76" />
+	    <link rel="apple-touch-icon" href="" sizes="114x114" />
+	    <link rel="apple-touch-icon" href="" sizes="120x120" />
+	    <link rel="apple-touch-icon" href="" sizes="144x144" />
+	    <link rel="apple-touch-icon" href="" sizes="152x152" />
+	    <meta name="format-detection" content="telephone=no" />
+	    <style type="text/css">
+			body {
+			  padding: 0;
+			  margin: 0;
+			  overflow: hidden;
+			  background-color: #249a90;
+			  color: #fff;
+			  font-size: 12px;
+			}
+			canvas {
+			  padding: 0;
+			  margin: 0;
+			}
+	    </style>
+
+	</head>
+	<body>
+		<canvas id="world"></canvas>
+		
+	    <script type="text/javascript">
+			// forked from makishimaa's "ボールクロック（制作中）" http://jsdo.it/makishimaa/8fCE
+
+			var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+			var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+			
+			var canvas, context, rect, canvasWidth, canvasHeight;
+			var FPS = 30,
+			    BALLS = 150,
+			    MAX_DIST = 200,
+			    MIN_DIST = 200;
+
+			var viewScale = 1;
+			var startTime;
+			var targetLag = 0;
+			var lap = 1000;
+			var points = [];
+			var viewPoint = { x: 0, y: 0};
+			var timer = null;
+
+			function init(__canvas) {
+			    canvas = __canvas;
+			    //rect = canvas.getBoundingClientRect();
+			    //canvasWidth = rect.width;
+			    //canvasHeight = rect.height;
+			    canvas.width = canvasWidth = window.innerWidth;
+			    canvas.height = canvasHeight = window.innerHeight;
+			    context = canvas.getContext('2d');
+			    
+			    for (var i = 0; i < BALLS; i++) {
+			        var point = new Point(Math.random() * canvasWidth * 0.1 + MIN_DIST, Math.random() * canvasHeight * 0.1 + MIN_DIST, i);
+			        points.push(point);
+			    }
+			    context.save();
+			    startTime = new Date();
+			    // viewPoint.x = parseInt( (canvasWidth-MAX_DIST*2)*0.5 );
+			    // viewPoint.y = parseInt( (canvasHeight-MAX_DIST*2)*0.5 );
+
+			    viewPoint.x = parseInt( (canvasWidth-MAX_DIST*2)*0.55 );
+			    viewPoint.y = parseInt( (canvasHeight-MAX_DIST*2)*0.5 );
+			    viewScale = 4;
+			    // alert(canvasWidth);
+
+			    timer = requestAnimationFrame(loop);
+			}
+
+			function distance(p, q) {
+			    var a = p.x - q.x,
+			        b = p.y - q.y;
+			    return Math.sqrt(a * a + b * b);
+			}
+
+			var direction = function(p, q) {
+			    var a = q.x - p.x,
+			        b = q.y - p.y;
+			    return Math.atan2(b, a);
+			};
+
+			var loop = function() {
+			    // var nowTime = new Date();
+			    // var lag = nowTime - startTime;
+			    // if (lag > targetLag) {
+			    //     viewScale *= 2;
+			    //     if (viewScale > 16) {
+			    //         viewScale = 1;
+			    //     }
+			    //     targetLag += lap;
+			    // }
+
+			    context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+			    //
+			    context.translate((canvasWidth * viewScale - canvasWidth) * -0.5, (canvasHeight * viewScale - canvasHeight) * -0.5);
+			    context.scale(viewScale, viewScale);
+			    context.translate(viewPoint.x, viewPoint.y);
+			    //
+
+			    var i;
+			    var len = points.length;
+			    for (i = 0; i < len; i++) {
+			        var point = points[i];
+			        point.update(i);
+			        point.draw();
+			    }
+			    // viewPoint.x = -1 * points[0].x + canvasWidth * 0.5;
+			    // viewPoint.y = -1 * points[0].y + canvasHeight * 0.5;
+			    context.restore();
+			    context.save();
+
+			    timer = requestAnimationFrame(loop);
+			};
+
+			function Point(x, y, i) {
+			    this.x = this.bx = x;
+			    this.y = this.by = y;
+			    this.color = 'hsla(' + Math.floor(360 / BALLS * i) + ', 50%, 50%, 0.4)';
+			    this.r = Math.random() * 10;
+			    this.vx = this.vy = this.ax = this.ay = 0;
+			    this.t = FPS / 1000;
+			}
+			Point.prototype = {
+			    speed: function(aax, aay, friction) {
+			        this.ax += aax;
+			        this.ay += aay;
+			        this.x += this.vx * this.t + 0.5 * this.ax * this.t * this.t;
+			        this.y += this.vy * this.t + 0.5 * this.ay * this.t * this.t;
+			        this.vx += this.ax * this.t;
+			        this.vy += this.ay * this.t;
+			        this.vx *= friction;
+			        this.vy *= friction;
+			        this.ax = 0;
+			        this.ay = 0;
+			    },
+			    update: function(id) {
+			        var i;
+			        var len = points.length;
+			        for (i = 0; i < len; i++) {
+			            if (id !== i) {
+			                var dist = distance(this, points[i]);
+			                var dire = direction(this, points[i]);
+			                var r = Math.abs(dist - MAX_DIST) * 1.5;
+			                if (dist > MAX_DIST) {
+			                    this.speed(r * Math.cos(dire), r * Math.sin(dire), 0.90);
+			                }
+			                else if (dist < MAX_DIST) {
+			                    this.speed(r * Math.cos(dire + Math.PI), r * Math.sin(dire + Math.PI), 0.90);
+			                }
+			            }
+			        }
+			    },
+			    draw: function() {
+			        context.beginPath();
+			        context.fillStyle = this.color;
+			        context.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+			        context.fill();
+			    }
+			};
+
+			window.addEventListener('load', function(){
+				init(document.getElementById('world'));
+			}, false);
+
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+<script type="text/x-handlebars-template" id="section-menu-template">
+	<section class="home">
+		<ul class="menu">
+			{{#each []}}
+			<li class="menu-list">
+				<div class="menu-text-wrapper">
+					<a class="menu-text-link" href="{{this.href}}"><span class="menu-text">{{this.name}}</span></a>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
+		<div class="polygon-bar">
+			<div class="poly-vertical"></div>
+		</div>
+	</section>
+</script>

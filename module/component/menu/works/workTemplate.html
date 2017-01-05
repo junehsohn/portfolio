@@ -1,0 +1,51 @@
+<script type="text/x-handlebars-template" id="section-menu-template">
+	<section class="works">
+		
+		<div class="polygon-bar">
+			<div class="poly-vertical"></div>
+		</div>
+
+		<div class="work-prog-bar"></div>
+
+		<div class="works-menu-container">
+			<ul class="works-menu">
+				{{#each []}}
+				<li class="works-menu-list" data-works-id="{{this.id}}">
+					<div class="wml-cir-large" data-convert="false">
+						<img src="./image/cir_half.png" class="wml-cir-large-img"  />
+						<div class="wml-cir-large-img-color"  ></div>
+						<!--<canvas id="img-{{this.id}}" class="wml-cir-large-img" data-src="./image/cir_half.png" data-width="669" data-height="669"/>-->
+						
+						<!--
+						<svg class="wml-cir-large-img"  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg">
+							<image  xlink:href="./image/cir.png" x="0" y="0" class="wml-cir-large-img-inner" width="100%" height="100%" 
+							style="-webkit-filter:url(#filter-{{this.id}});
+									-moz-filter:url(#filter-{{this.id}});
+									-o-filter:url(#filter-{{this.id}});
+									filter:url(#filter-{{this.id}});
+							" />
+							<filter id="filter-{{this.id}}" x="0" y="0"   width="100%" height="100%">
+								<feColorMatrix color-interpolation-filters="sRGB" in="SourceGraphic" result="filter-{{this.id}}out" type="matrix"
+								                values="0.0157 0      0      0 0
+								                        0      0.3059 0      0 0 
+								                        0      0      0.7765 0 0 
+								                        0      0      0      1 0  
+														0      0      0      0 1 
+								                        "/>
+							</filter>
+						</svg>
+						-->
+						
+					</div>
+					<div class="wml-cir-small"><a class="wml-cir-small-text" href="{{this.href}}"><span class="wml-cir-small-text-inner">enter</span></a></div>
+					<div class="wml-cir-click"></div>
+					<span class="wml-name">- {{this.projectName}} -</span>
+					<span class="wml-copy" data-copy-text="- {{this.copyEng}} -">- {{this.copyEng}} -</span>
+				</li>
+				{{/each}}
+			</ul>	
+		</div>
+
+
+	</section>
+</script>

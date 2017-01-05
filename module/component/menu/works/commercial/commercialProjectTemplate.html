@@ -1,0 +1,53 @@
+<script type="text/x-handlebars-template" id="commercial-project-template">
+	<section class="commercial-project" data-model-id="{{id}}">
+		
+		<div class="proj-prev-panel">
+			<div class="proj-title">{{projectName}}</div>
+
+			<div class="proj-circle">
+				<img class="proj-circle-inner" src="./image/cir.png" />
+				<div class="proj-circle-color-inner" style="background-color:{{mesh.ambient}};"></div>
+			</div>
+
+			<div class="proj-copy-kor">
+				<div class="txt-line"></div>
+				<div class="txt-copy">
+					{{#each copyKor}}
+						 <div class="txt-copy-inner inner-ani-copy" data-str="{{this}}"></div>
+					{{/each}}
+
+					{{#if endDate}}
+						<div class="txt-copy-inner txt-date inner-ani-copy" data-str="{{stDate}} - {{endDate}}"></div>
+					{{else}}
+						<div class="txt-copy-inner txt-date inner-ani-copy" data-str="{{stDate}}"></div>
+					{{/if}}
+					<div class="txt-copy-inner more-btn"><div class="more-txt">more</div></div>
+				</div>
+			</div>
+
+			<div class="proj-date">
+				<!--
+				<div class="txt-date">
+					
+					<div class="st-date">{{stDate}}</div>
+					{{#if endDate}}
+						<div class="dash">-</div>
+						<div class="end-date">{{endDate}}</div>
+					{{/if}}
+
+				</div>
+				-->
+				<div class="txt-line"></div>
+			</div>
+		</div>
+
+		<div class="proj-panel-container"></div>
+
+		<div class="close-btn">
+			<div class="close-line left"></div>
+			<div class="close-line right"></div>
+		</div>
+
+	</section>
+</script>
+

@@ -1,0 +1,121 @@
+<script type="text/x-handlebars-template" id="project-template">
+	<section class="proj-panel" data-model-id="{{id}}">
+		
+		<div class="bg-star"></div>
+
+		<div class="polygon-bar-container">
+			<div class="polygon-bar">
+				<div class="poly-vertical"></div>
+			</div>
+		</div>
+
+		<div class="bg-black"><div class="bg-black-inner"></div></div>
+
+		<div class="article-container">
+			<div class="article-container-inner">
+				<article class="sec client" style="opacity:1;">
+					<h3>Client</h3>
+					<svg width="1000" height="1000" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" style="opacity:0;">
+						<line class="s1-l" id="s1-l-1" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s1-l" id="s1-l-2" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s1-l" id="s1-l-3" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s1-l" id="s1-l-4" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s1-l" id="s1-l-5" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s1-l" id="s1-l-6" x1="0" y1="0" x2="200" y2="200" class="line" />
+
+						<circle class="s1-c" id="s1-c-1" cx="50" cy="50" r="6" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s1-c" id="s1-c-2" cx="50" cy="50" r="8" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s1-c" id="s1-c-3" cx="50" cy="50" r="24" stroke="white" stroke-width="10" fill="black" />
+						<circle class="s1-c" id="s1-c-4" cx="50" cy="50" r="12" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s1-c" id="s1-c-5" cx="50" cy="50" r="4" stroke="white" stroke-width="0" fill="white" />
+
+						<text id="s1-t" x="0" y="0" fill="white" class="proj-name">{{client}}</text>
+					</svg>
+				</article>
+
+				<article class="sec contrib" style="opacity:1;">
+					<h3>Contribution</h3>
+					<svg width="1000" height="1000" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" style="opacity:0;">
+						<line class="c1-l" id="c1-l-1" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-2" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-3" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-4" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-5" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-6" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-7" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-8" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-9" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="c1-l" id="c1-l-10" x1="0" y1="0" x2="200" y2="200" class="line" />
+
+						<circle class="c1-c" id="c1-c-1" cx="50" cy="50" r="6" stroke="white" stroke-width="0" fill="white" />
+						<circle class="c1-c" id="c1-c-2" cx="50" cy="50" r="8" stroke="white" stroke-width="0" fill="white" />
+						<circle class="c1-c" id="c1-c-3" cx="50" cy="50" r="7" stroke="white" stroke-width="0" fill="white" />
+						<circle class="c1-c" id="c1-c-4" cx="50" cy="50" r="8" stroke="white" stroke-width="0" fill="white" />
+						<circle class="c1-c" id="c1-c-5" cx="50" cy="50" r="5" stroke="white" stroke-width="0" fill="white" />
+						<circle class="c1-c" id="c1-c-6" cx="50" cy="50" r="4" stroke="white" stroke-width="0" fill="white" />
+
+						{{#each contribution}}
+							<text x="0" y="0" fill="white" class="contrib-name role">{{role}}</text>
+							<text x="0" y="0" fill="white" class="contrib-name per">{{per}}%</text>
+						{{/each}}
+					</svg>
+				</article>
+
+				<article class="sec summary" style="opacity:1;">
+					<h3>Summary</h3>
+					<svg width="1000" height="1000" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" style="opacity:0;">
+						<line class="s2-l" id="s2-l-1" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s2-l" id="s2-l-2" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s2-l" id="s2-l-3" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s2-l" id="s2-l-4" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s2-l" id="s2-l-5" x1="0" y1="0" x2="200" y2="200" class="line" />
+						<line class="s2-l" id="s2-l-6" x1="0" y1="0" x2="200" y2="200" class="line" />
+
+						<circle class="s2-c" id="s2-c-1" cx="50" cy="50" r="8" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s2-c" id="s2-c-2" cx="50" cy="50" r="4" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s2-c" id="s2-c-3" cx="50" cy="50" r="4" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s2-c" id="s2-c-4" cx="50" cy="50" r="4" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s2-c" id="s2-c-5" cx="50" cy="50" r="4" stroke="white" stroke-width="0" fill="white" />
+						<circle class="s2-c" id="s2-c-6" cx="50" cy="50" r="24" stroke="white" stroke-width="10" fill="black" />
+					</svg>
+					<div class="s2-imgs-container">
+						<div class="s2-imgs-wrapper">
+							{{#each imgLarge}}
+							<img class="s2-img" src="{{this}}" alt="{{../projectName}}"/>
+							{{/each}}
+						</div>
+						
+						<div class="s2-img-bg" style="background-color:{{mesh.ambient}};"></div>
+						<div class="s2-img-light"></div>
+					</div>
+					
+					{{#each summary}}
+					<div class="summary-text">
+						{{#each this}}
+							<span class="summary-text-line">{{this}}</span>
+						{{/each}}
+					</div>
+					{{/each}}
+					
+					<div class="visit-site">
+						{{#if siteLink}}
+							<a href="{{siteLink}}" target="_blank">{{siteLinkText}}</a>
+						{{else}}
+							{{siteLinkText}}
+						{{/if}}
+					</div>
+
+				</article>
+			</div>	
+			<div class="article-container-noise"></div>
+		</div>
+
+		
+		
+
+	</section>
+</script>
+
+
+
+
